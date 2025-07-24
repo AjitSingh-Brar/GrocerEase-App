@@ -1,0 +1,60 @@
+<ion-header id="product-header" aria-label="In-page links">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col1">
+          <img
+            id="app-logo"
+            src="../../assets/images/appLogo.png"
+            alt="brand-logo"
+            aria-label="app-logo"
+          />
+        </ion-col>
+        <ion-col class="col2">
+          <ion-grid class="second-grid">
+            <ion-row>
+              <ion-col class="searchbar-col">
+                <ion-searchbar
+                  color="light"
+                  placeholder="Search for products..."
+                ></ion-searchbar>
+              </ion-col>
+              <ion-col size="auto" class="cart-logo">
+                <ion-button>
+                  <ion-icon
+                    slot="start"
+                    name="person-circle-outline"
+                  ></ion-icon>
+                  Sign In
+                </ion-button>
+              </ion-col>
+              <ion-col size="auto" class="cart-logo">
+                <div class="icon-container">
+                  <ion-icon
+                    name="cart-outline"
+                    size="large"
+                    color="primary"
+                    aria-label="Shopping Cart"
+                  ></ion-icon>
+                  <ion-badge color="danger" class="badge-on-icon">4</ion-badge>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row class="product-navbar">
+              <ion-col size="12" size-lg="3"
+                ><ion-nav>FRUITS & VEGETABLES</ion-nav></ion-col
+              >
+              <ion-col size="12" size-lg="3"><ion-nav>BAKERY</ion-nav></ion-col>
+              <ion-col size="12" size-lg="3"
+                ><ion-nav>BEVERAGES</ion-nav></ion-col
+              >
+              <ion-col size="12" size-lg="3"
+                ><ion-nav> CONTACT </ion-nav></ion-col
+              >
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>

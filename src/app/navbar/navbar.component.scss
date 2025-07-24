@@ -1,0 +1,84 @@
+ion-header {
+  box-shadow: none;
+  background: #fefefe;
+}
+ion-toolbar {
+  max-width: 1780px;
+  min-height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-grid {
+  --ion-grid-padding: 0;
+}
+.col1 {
+  display: flex;
+  align-items: center;
+}
+
+.second-grid {
+  min-height: 80%;
+  color: rgb(3 105 161 / var(--tw-text-opacity, 1));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.searchbar-col {
+  padding-left: 0;
+}
+
+ion-searchbar {
+  --border: 1px solid #6f6f6f;
+  --border-radius: 4px;
+  --box-shadow: none;
+  padding-left: 0;
+}
+
+.cart-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+}
+
+.badge-on-icon {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-size: 11px;
+  padding: 6px 7px;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+ion-searchbar {
+  border-radius: 100px;
+}
+
+.product-navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-navbar ion-col {
+  font-size: 1rem;
+  cursor: pointer;
+}
