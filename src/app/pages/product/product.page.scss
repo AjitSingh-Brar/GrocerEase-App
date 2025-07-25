@@ -1,0 +1,116 @@
+.product-info {
+  min-height: 400px;
+}
+.product-image,
+.product-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-description {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.product-section {
+  max-width: 400px;
+}
+
+.product-name {
+  padding: 0px;
+  margin: 0px 0px 10px 0px;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.product-details {
+  margin: 0px 0px 15px 0px;
+  font-size: 0.9rem;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  margin: 0px 0px 40px 0px;
+}
+
+.quantity {
+  width: 190px;
+  min-height: 10px;
+  background-color: #edeefa;
+  padding: 1px;
+  display: inline-flex;
+  overflow: hidden;
+  align-items: center;
+  border-radius: 10px;
+  margin: 0px 0px 10px 0px;
+}
+
+.minus,
+.plus {
+  --background: 0 0;
+  color: #000;
+  font-size: 1rem;
+  border: none;
+  --box-shadow: none;
+}
+
+#qtyInput {
+  width: 40%;
+  border: none;
+  font-size: 1rem;
+  text-align: center;
+  color: #000;
+  background: 0 0;
+  flex: 1;
+  font-weight: 700;
+}
+
+#qtyInput:focus-visible {
+  outline: none;
+}
+
+.product-review {
+  max-width: 1000px;
+  min-height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.review-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+hr {
+  background-color: rgb(217, 217, 217);
+  max-width: 1780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ion-content-scroll-host {
+  height: 300px; /* Set height as needed */
+  overflow-y: auto;
+  position: relative;
+}
+
+.custom-modal::part(content) {
+  --width: 90%;
+  --max-width: 600px;
+  --height: 250px;
+  --max-height: 90%;
+  border-radius: 12px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}

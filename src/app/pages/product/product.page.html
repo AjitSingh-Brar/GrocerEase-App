@@ -1,0 +1,142 @@
+<app-navbar></app-navbar>
+
+<ion-content [fullscreen]="true" scroll-y="false">
+  <ion-grid class="product" aria-label="Product Info">
+    <ion-row class="product-info">
+      <ion-col class="product-image" size="12" size-md="6">
+        <img
+          src="../../../assets/images/product/croissant.jpg"
+          alt="croissant"
+        />
+      </ion-col>
+      <ion-col class="product-description" size="12" size-md="6">
+        <div class="product-section">
+          <ion-title class="product-name">Croissant</ion-title>
+          <div class="product-details">
+            Our golden croissants have the flakey, buttery taste you crave and
+            are perfect for breakfast, brunch buffets or snack time.
+          </div>
+          <div class="product-price">$ {{price | number:'1.2-2'}}</div>
+          <div class="quantity">
+            <ion-button class="minus" (click)="(decrement())">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <input type="text" value="{{quantity}}" id="qtyInput" />
+            <ion-button class="plus" (click)="increment()">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
+          <div class="addToCart">
+            <ion-button size="large" color="secondary">Add to Cart</ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr />
+  <div class="product-review">
+    <div class="review-header">
+      <div class="review-title">Product Reviews</div>
+      <div>
+        <ion-button id="open-addReview-modal" color="secondary">Add Review</ion-button>
+      </div>
+    </div>
+    <div class="ion-content-scroll-host">
+      <ion-list>
+        <ion-item *ngFor="let item of items">
+          <app-product-review></app-product-review>
+        </ion-item>
+      </ion-list>
+
+      <ion-infinite-scroll
+        (ionInfinite)="onIonInfinite($event)"
+        [disabled]="items.length >= 5"
+      >
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data..."
+        ></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
+
+  <ion-modal
+    trigger="open-addReview-modal"
+    cssClass="custom-modal"
+    (willDismiss)="onWillAdd($event)"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Add Product Review</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Name"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Name"
+            [(ngModel)]="name"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Review"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Your review"
+            [(ngModel)]="review"
+          ></ion-input>
+        </ion-item>
+        <div class="modal-buttons">
+          <ion-button color="light" (click)="cancel()">Cancel</ion-button>
+          <ion-button color="secondary" (click)="submit()" [strong]="true"
+            >Submit</ion-button
+          >
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    trigger="open-modal"
+    cssClass="custom-modal"
+    (willDismiss)="onWillDismiss($event)"
+  >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Update your review</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Edit your name"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Name"
+            [(ngModel)]="updatedName"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Edit your review"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Your review"
+            [(ngModel)]="updatedReview"
+          ></ion-input>
+        </ion-item>
+        <div class="modal-buttons">
+          <ion-button color="light" (click)="cancel()">Cancel</ion-button>
+          <ion-button color="secondary" (click)="confirm()" [strong]="true"
+            >Confirm</ion-button
+          >
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

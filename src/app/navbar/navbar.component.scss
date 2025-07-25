@@ -1,12 +1,13 @@
 ion-header {
   box-shadow: none;
-  background: #fefefe;
+  background: var(--color-core-blue-5, #f2f8fd);
 }
 ion-toolbar {
   max-width: 1780px;
   min-height: 100px;
   margin-left: auto;
   margin-right: auto;
+  --background: var(--color-core-blue-5, #f2f8fd);
 }
 
 ion-grid {
