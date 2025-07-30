@@ -1,5 +1,5 @@
 .product-info {
-  min-height: 400px;
+  min-height: 300px;
 }
 .product-image,
 .product-description {
@@ -36,8 +36,8 @@
 }
 
 .quantity {
-  width: 190px;
-  min-height: 10px;
+  width: 140px;
+  min-height: 5px;
   background-color: #edeefa;
   padding: 1px;
   display: inline-flex;
@@ -96,7 +96,7 @@ hr {
 }
 
 .ion-content-scroll-host {
-  height: 300px; /* Set height as needed */
+  height: 200px; /* Set height as needed */
   overflow-y: auto;
   position: relative;
 }
