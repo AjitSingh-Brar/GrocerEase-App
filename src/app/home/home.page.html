@@ -1,21 +1,70 @@
 <app-navbar></app-navbar>
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="banner">
   </div>
-</ion-content> -->
+
+  <!-- Bakery Cards -->
+  <div class="product-section">
+    <h2>FRUITS & VEG</h2>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <!-- Product Card -->
+        <ion-col size="12" size-md="4" class="product-card">
+          <ion-card>
+            <ion-card-content class="product-image">
+              <img
+                src="../../../assets/images/product/tomatoes.jpg"
+                alt="Product Image"
+              />
+            </ion-card-content>
+            <ion-card-content>
+              <h2>Tomatoes</h2>
+              <p>$25</p>
+              <ion-button expand="block" color="primary"
+                >Add to Cart</ion-button
+              >
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Repeat for more products -->
+        <ion-col size="12" size-md="4" class="product-card">
+          <ion-card>
+            <ion-card-content class="product-image">
+              <img
+                src="../../../assets/images/product/mangoes.jpg"
+                alt="Product Image"
+              />
+            </ion-card-content>
+            <ion-card-content>
+              <h2>Mangoes</h2>
+              <p>$25</p>
+              <ion-button expand="block" color="primary"
+                >Add to Cart</ion-button
+              >
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="4" class="product-card">
+          <ion-card>
+            <ion-card-content class="product-image">
+              <img
+                src="../../../assets/images/product/lettuce.jpg"
+                alt="Product Image"
+              />
+            </ion-card-content>
+            <ion-card-content>
+              <h2>Lettuce</h2>
+              <p>$25</p>
+              <ion-button expand="block" color="primary"
+                >Add to Cart</ion-button
+              >
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

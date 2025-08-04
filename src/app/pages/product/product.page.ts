@@ -104,7 +104,7 @@ export class ProductPage implements OnInit {
     this.modal.dismiss(null, 'cancel');
   }
 
-  confirm() {
+  submit() {
     this.modal.dismiss(this.updatedName, 'confirm');
   }
 
@@ -119,7 +119,10 @@ export class ProductPage implements OnInit {
   name!: string;
   review!: string;
 
-  submit() {
+  close() {
+    this.modal.dismiss(null, 'close');
+  }
+  confirm() {
     this.reviewModal.dismiss(this.name, 'confirm');
   }
 
