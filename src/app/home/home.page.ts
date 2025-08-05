@@ -107,7 +107,6 @@ export class HomePage {
     formData.append('price', String(price));
 
     this.http.post(this.apiURL + 'add-to-cart', formData).subscribe((data) => {
-      console.log('Product of ID ' + productId + ' was added');
     });
   }
 }

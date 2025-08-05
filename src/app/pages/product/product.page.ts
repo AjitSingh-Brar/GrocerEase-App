@@ -23,6 +23,17 @@ import { removeOutline, addOutline } from 'ionicons/icons';
 import { ProductReviewComponent } from 'src/app/product-review/product-review.component';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
+interface Product {
+  _id: string;
+  productId: string;
+  productName: string;
+  productDesc: string;
+  price: number;
+  photo: string;
+}
 
 @Component({
   selector: 'app-product',
@@ -53,12 +64,25 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class ProductPage implements OnInit {
   quantity = 1;
   price = 5.0;
-  constructor() {
+  product: Product | undefined;
+  apiURL = 'http://localhost:5000/';
+
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
     addIcons({ removeOutline, addOutline });
   }
 
   ngOnInit() {
     this.generateItems(5); // Load initial 5 items
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('productId');
+      if (id) {
+        this.http
+          .get<Product>(this.apiURL + `show-product/${id}`)
+          .subscribe((data) => {
+            this.product = data;
+          });
+      }
+    });
   }
 
   increment() {
@@ -74,6 +98,23 @@ export class ProductPage implements OnInit {
     }
   }
 
+  addToCart() {
+    if (!this.product?.productId || !this.product?.productName || !this.quantity || !this.product?.photo || !this.product?.price) {
+      console.error('Product details are missing');
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append('productId', this.product?.productId);
+    formData.append('productName', this.product?.productName);
+    formData.append('quantity', String(this.quantity));
+    formData.append('photo', this.product?.photo);
+    formData.append('price', String(this.product?.price));
+
+    this.http.post(this.apiURL + 'add-to-cart', formData).subscribe((data) => {
+    });
+  }
+
   items: string[] = [];
   private dataCounter = 0; // To simulate fetching new data
 
@@ -87,7 +128,6 @@ export class ProductPage implements OnInit {
   }
 
   async onIonInfinite(event: InfiniteScrollCustomEvent) {
-    // Simulate a network request or data fetching delay
     setTimeout(() => {
       this.generateItems(10); // Load another 10 items
       event.target.complete(); // Signal completion
@@ -119,7 +159,6 @@ export class ProductPage implements OnInit {
   updatedReview!: string;
 
   close() {
-    console.log('hllo');
     this.reviewModal.dismiss(null, 'cancel');
   }
   confirm() {

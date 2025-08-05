@@ -5,18 +5,17 @@
     <ion-row class="product-info">
       <ion-col class="product-image" size="12" size-md="6">
         <img
-          src="../../../assets/images/product/croissant.jpg"
+          [src]="'assets/images/product/' + product?.photo"
           alt="croissant"
         />
       </ion-col>
       <ion-col class="product-description" size="12" size-md="6">
         <div class="product-section">
-          <ion-title class="product-name">Croissant</ion-title>
+          <ion-title class="product-name">{{product?.productName}}</ion-title>
           <div class="product-details">
-            Our golden croissants have the flakey, buttery taste you crave and
-            are perfect for breakfast, brunch buffets or snack time.
+            {{product?.productDesc}}
           </div>
-          <div class="product-price">$ {{price | number:'1.2-2'}}</div>
+          <div class="product-price">$ {{product?.price | number:'1.2-2'}}</div>
           <div class="quantity">
             <ion-button class="minus" size="small" (click)="(decrement())">
               <ion-icon name="remove-outline"></ion-icon>
@@ -27,7 +26,7 @@
             </ion-button>
           </div>
           <div class="addToCart">
-            <ion-button size="default" color="secondary">Add to Cart</ion-button>
+            <ion-button size="default" color="secondary" (click)="addToCart()">Add to Cart</ion-button>
           </div>
         </div>
       </ion-col>
