@@ -15,7 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { cartOutline, star, personCircleOutline } from 'ionicons/icons';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -34,11 +34,12 @@ import { cartOutline, star, personCircleOutline } from 'ionicons/icons';
     IonHeader,
     IonIcon,
     IonContent,
+    RouterModule,
   ],
 })
 export class NavbarComponent implements OnInit {
   constructor() {
-    addIcons({personCircleOutline,cartOutline,star});
+    addIcons({ personCircleOutline, cartOutline, star });
   }
 
   ngOnInit() {}

@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <app-navbar></app-navbar>
+
+  <div class="content">
+    <ion-header> Products in Cart </ion-header>
+
+    <div>
+      <ion-card>
+        <ion-card-content class="cart-product">
+          <ion-item lines="none">
+            <img
+              src="assets/images/product/tomatoes.jpg"
+              alt="Tomatoes"
+              class="cart-product-img"
+              style="width: 150px; object-fit: cover; margin-right: 16px"
+            />
+
+            <ion-label>
+              <h2>
+                <a
+                  [routerLink]="['/product', productId]"
+                  style="text-decoration: none; color: inherit"
+                >
+                  Tomatoes
+                </a>
+              </h2>
+              <p>$25 each</p>
+            </ion-label>
+
+            <div class="cart-actions">
+              <ion-button color="warning" (click)="decrement()">
+                Remove
+              </ion-button>
+
+              <span>{{ quantity }}</span>
+
+              <ion-button color="success" (click)="increment()">
+                Add
+              </ion-button>
+
+              <ion-button
+                color="danger"
+                style="margin-left: 50px"
+                (click)="delete()"
+              >
+                Delete
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
