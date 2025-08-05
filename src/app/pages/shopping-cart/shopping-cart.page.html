@@ -1,44 +1,54 @@
-<app-navbar></app-navbar>
-
 <ion-content [fullscreen]="true">
-  <ion-header> Products in Cart </ion-header>
+  <app-navbar></app-navbar>
 
-  <div>
-    <ion-card>
-      <ion-card-content class="cart-product">
-        <ion-item>
-          <img
-            src="assets/images/product/tomatoes.jpg"
-            alt="Tomatoes"
-            class="cart-product-img"
-            style="width: 150px; object-fit: cover; margin-right: 16px"
-          />
+  <div class="content">
+    <ion-header> Products in Cart </ion-header>
 
-          <ion-label>
-            <h2>
-              <a
-                [routerLink]="['/product', productId]"
-                style="text-decoration: none; color: inherit"
+    <div>
+      <ion-card>
+        <ion-card-content class="cart-product">
+          <ion-item lines="none">
+            <img
+              src="assets/images/product/tomatoes.jpg"
+              alt="Tomatoes"
+              class="cart-product-img"
+              style="width: 150px; object-fit: cover; margin-right: 16px"
+            />
+
+            <ion-label>
+              <h2>
+                <a
+                  [routerLink]="['/product', productId]"
+                  style="text-decoration: none; color: inherit"
+                >
+                  Tomatoes
+                </a>
+              </h2>
+              <p>$25 each</p>
+            </ion-label>
+
+            <div class="cart-actions">
+              <ion-button color="warning" (click)="decrement()">
+                Remove
+              </ion-button>
+
+              <span>{{ quantity }}</span>
+
+              <ion-button color="success" (click)="increment()">
+                Add
+              </ion-button>
+
+              <ion-button
+                color="danger"
+                style="margin-left: 50px"
+                (click)="delete()"
               >
-                Tomatoes
-              </a>
-            </h2>
-            <p>$25 each</p>
-          </ion-label>
-
-          <div class="cart-actions">
-            <ion-button (click)="decrement()"> Remove </ion-button>
-
-            <span>{{ quantity }}</span>
-
-            <ion-button color="success" (click)="increment()"> Add </ion-button>
-
-            <ion-button color="danger" style="margin-left: 50px" (click)="delete()">
-              Delete
-            </ion-button>
-          </div>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
+                Delete
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>
