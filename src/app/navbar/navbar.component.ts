@@ -15,7 +15,20 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { cartOutline, star, personCircleOutline } from 'ionicons/icons';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
+interface Cart {
+  _id: string;
+  productName: string;
+  photo: string;
+  quantity: number;
+  productId: string;
+  price: number;
+  itemId: string;
+}
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -36,9 +49,20 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {
+  cartItems: Cart[] = [];
+  apiURL = 'http://localhost:5000/';
+
+  constructor(private http: HttpClient, private router: Router) {
     addIcons({ personCircleOutline, cartOutline, star });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.showCart();
+  }
+
+  showCart() {
+    this.http.get<Cart[]>(this.apiURL + 'show-cart').subscribe((data) => {
+      this.cartItems = data;
+    });
+  }
 }

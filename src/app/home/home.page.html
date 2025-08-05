@@ -9,57 +9,27 @@
       <ion-grid>
         <ion-row class="ion-justify-content-around">
           <!-- Product Card -->
-          <ion-col size="12" size-md="3" class="product-card">
-            <a [routerLink]="['/product','tomatoes']" style="text-decoration: none">
-              <ion-card>
-                <ion-card-content class="product-image">
-                  <img
-                    src="../../../assets/images/product/tomatoes.jpg"
-                    alt="Product Image"
-                  />
-                </ion-card-content>
-                <ion-card-content>
-                  <h2 id="product-title">Tomatoes</h2>
-                  <p>$25</p>
-                  <ion-button expand="block" color="primary"
-                    >Add to Cart</ion-button
-                  >
-                </ion-card-content>
-              </ion-card>
-            </a>
-          </ion-col>
-
-          <!-- Repeat for more products -->
-          <ion-col size="12" size-md="3" class="product-card">
+          <ion-col
+            size="12"
+            size-md="3"
+            class="product-card"
+            *ngFor="let product of filteredProductsFruitsVeg()"
+          >
             <ion-card>
               <ion-card-content class="product-image">
                 <img
-                  src="../../../assets/images/product/mangoes.jpg"
+                  [src]="'assets/images/product/' + product.photo"
                   alt="Product Image"
+                  (click)="goToProduct(product.productId)"
                 />
               </ion-card-content>
               <ion-card-content>
-                <h2 id="product-title">Mangoes</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
-                  >Add to Cart</ion-button
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-          <ion-col size="12" size-md="3" class="product-card">
-            <ion-card>
-              <ion-card-content class="product-image">
-                <img
-                  src="../../../assets/images/product/lettuce.jpg"
-                  alt="Product Image"
-                />
-              </ion-card-content>
-              <ion-card-content>
-                <h2 id="product-title">Lettuce</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
+                <h2 id="product-title">{{product.productName}}</h2>
+                <p>${{product.price}}</p>
+                <ion-button
+                  expand="block"
+                  color="primary"
+                  (click)="addProduct(product.productId, product.productName, 1, product.photo, product.price)"
                   >Add to Cart</ion-button
                 >
               </ion-card-content>
@@ -73,53 +43,23 @@
       <h2>BAKERY</h2>
       <ion-grid>
         <ion-row class="ion-justify-content-around">
-          <ion-col size="12" size-md="3" class="product-card">
+          <ion-col
+            size="12"
+            size-md="3"
+            class="product-card"
+            *ngFor="let product of filteredProductsBakery()"
+          >
             <ion-card>
               <ion-card-content class="product-image">
                 <img
-                  src="../../../assets/images/product/bread.jpg"
+                  [src]="'assets/images/product/' + product.photo"
                   alt="Product Image"
+                  (click)="goToProduct(product.productId)"
                 />
               </ion-card-content>
               <ion-card-content>
-                <h2 id="product-title">Bread</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
-                  >Add to Cart</ion-button
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-          <ion-col size="12" size-md="3" class="product-card">
-            <ion-card>
-              <ion-card-content class="product-image">
-                <img
-                  src="../../../assets/images/product/cupcakes.jpg"
-                  alt="Product Image"
-                />
-              </ion-card-content>
-              <ion-card-content>
-                <h2 id="product-title">Cupcakes</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
-                  >Add to Cart</ion-button
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-          <ion-col size="12" size-md="3" class="product-card">
-            <ion-card>
-              <ion-card-content class="product-image">
-                <img
-                  src="../../../assets/images/product/croissant.jpg"
-                  alt="Product Image"
-                />
-              </ion-card-content>
-              <ion-card-content>
-                <h2 id="product-title">Croissant</h2>
-                <p>$25</p>
+                <h2 id="product-title">{{product.productName}}</h2>
+                <p>${{product.price}}</p>
                 <ion-button expand="block" color="primary"
                   >Add to Cart</ion-button
                 >
@@ -134,53 +74,23 @@
       <h2>BEVERAGES</h2>
       <ion-grid>
         <ion-row class="ion-justify-content-around">
-          <ion-col size="12" size-md="3" class="product-card">
+          <ion-col
+            size="12"
+            size-md="3"
+            class="product-card"
+            *ngFor="let product of filteredProductsBeverages()"
+          >
             <ion-card>
               <ion-card-content class="product-image">
                 <img
-                  src="../../../assets/images/product/cocacola.jpg"
+                  [src]="'assets/images/product/' + product.photo"
                   alt="Product Image"
+                  (click)="goToProduct(product.productId)"
                 />
               </ion-card-content>
               <ion-card-content>
-                <h2 id="product-title">Coca cola</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
-                  >Add to Cart</ion-button
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-          <ion-col size="12" size-md="3" class="product-card">
-            <ion-card>
-              <ion-card-content class="product-image">
-                <img
-                  src="../../../assets/images/product/orangejuice.jpg"
-                  alt="Product Image"
-                />
-              </ion-card-content>
-              <ion-card-content>
-                <h2 id="product-title">Orange Juice</h2>
-                <p>$25</p>
-                <ion-button expand="block" color="primary"
-                  >Add to Cart</ion-button
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-          <ion-col size="12" size-md="3" class="product-card">
-            <ion-card>
-              <ion-card-content class="product-image">
-                <img
-                  src="../../../assets/images/product/perrier.jpg"
-                  alt="Product Image"
-                />
-              </ion-card-content>
-              <ion-card-content>
-                <h2 id="product-title">Perrier</h2>
-                <p>$25</p>
+                <h2 id="product-title">{{product.productName}}</h2>
+                <p>${{product.price}}</p>
                 <ion-button expand="block" color="primary"
                   >Add to Cart</ion-button
                 >

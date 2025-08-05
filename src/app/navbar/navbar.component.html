@@ -3,7 +3,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="col1">
-          <a [routerLink]="['/home']">
+          <a [routerLink]="['/']">
             <img
               id="app-logo"
               src="../../assets/images/appLogo.png"
@@ -42,7 +42,7 @@
                       aria-label="Shopping Cart"
                     ></ion-icon>
                     <ion-badge color="danger" class="badge-on-icon"
-                      >4</ion-badge
+                      >{{cartItems.length}}</ion-badge
                     >
                   </div>
                 </a>
