@@ -62,6 +62,7 @@
 
   <ion-modal
     trigger="open-addReview-modal"
+    #addModal
     cssClass="custom-modal"
     (willDismiss)="onWillAdd($event)"
   >
@@ -102,6 +103,7 @@
 
   <ion-modal
     trigger="open-modal"
+    #reviewModal
     cssClass="custom-modal"
     (willDismiss)="onWillDismiss($event)"
   >
@@ -112,15 +114,6 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-item>
-          <ion-input
-            label="Edit your name"
-            labelPlacement="stacked"
-            type="text"
-            placeholder="Name"
-            [(ngModel)]="updatedName"
-          ></ion-input>
-        </ion-item>
         <ion-item>
           <ion-input
             label="Edit your review"

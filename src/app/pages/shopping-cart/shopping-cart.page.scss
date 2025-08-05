@@ -7,7 +7,11 @@ ion-header {
   letter-spacing: 1px;
 }
 
-
+ion-title {
+  margin-top: 20px;
+  font-size: 2rem;
+  color: var(--color-core-blue-5, #55a1e0);
+}
 
 ion-card {
   max-width: 60%;
@@ -16,19 +20,17 @@ ion-card {
 }
 
 .cart-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-ion-button{
-    width: 80px;
+ion-button {
+  width: 80px;
 }
-
 
 span {
-    margin: 0 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
-

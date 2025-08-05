@@ -25,7 +25,6 @@ import { RouterModule } from '@angular/router';
     IonBadge,
     IonButton,
     IonToolbar,
-    IonImg,
     IonCol,
     IonRow,
     IonGrid,
@@ -33,7 +32,6 @@ import { RouterModule } from '@angular/router';
     IonNav,
     IonHeader,
     IonIcon,
-    IonContent,
     RouterModule,
   ],
 })

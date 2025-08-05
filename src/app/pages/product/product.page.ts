@@ -16,7 +16,6 @@ import {
   IonModal,
   IonHeader,
   IonToolbar,
-  IonButtons,
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { addIcons } from 'ionicons';
@@ -95,40 +94,40 @@ export class ProductPage implements OnInit {
     }, 500); // Simulate 500ms loading time
   }
 
-  @ViewChild(IonModal) modal!: IonModal;
+  @ViewChild('addModal') modal!: IonModal;
 
-  updatedName!: string;
-  updatedReview!: string;
+  name!: string;
+  review!: string;
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
 
   submit() {
-    this.modal.dismiss(this.updatedName, 'confirm');
-  }
-
-  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
-    if (event.detail.role === 'confirm') {
-      console.log('Review updated');
-    }
-  }
-
-  @ViewChild(IonModal) reviewModal!: IonModal;
-
-  name!: string;
-  review!: string;
-
-  close() {
-    this.modal.dismiss(null, 'close');
-  }
-  confirm() {
-    this.reviewModal.dismiss(this.name, 'confirm');
+    this.modal.dismiss(this.name, 'confirm');
   }
 
   onWillAdd(event: CustomEvent<OverlayEventDetail>) {
     if (event.detail.role === 'confirm') {
       console.log('Product review added');
+    }
+  }
+
+  @ViewChild('reviewModal') reviewModal!: IonModal;
+
+  updatedName!: string;
+  updatedReview!: string;
+
+  close() {
+    console.log('hllo');
+    this.reviewModal.dismiss(null, 'cancel');
+  }
+  confirm() {
+    this.reviewModal.dismiss(this.updatedName, 'confirm');
+  }
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'confirm') {
+      console.log('Review updated');
     }
   }
 }

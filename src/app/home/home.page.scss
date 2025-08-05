@@ -4,29 +4,40 @@
   background-position: center;
   top: 100px;
   height: 90%;
-  // width: 100%;
-  // position: fixed;
 }
 
+h2 {
+  color: var(--color-core-blue-5, #55a1e0);
+}
 .product-section {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  position: relative;
+  // box-sizing: border-box;
   background-color: white;
-  padding: 0px 50px;
+  padding: 5px 50px;
 }
+
 .product-card ion-card {
   width: 300px;
   color: white;
   border-radius: 16px;
 }
 
+#product-title {
+  font-size: 1.5rem;
+}
+
+p{
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}
+
 ion-grid {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  padding-bottom: 30px;
+}
+
+ion-col {
+  cursor: pointer;
 }
 
 ion-card .product-image {
