@@ -1,0 +1,31 @@
+ion-header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0 20px 0;
+  color: white;
+  letter-spacing: 1px;
+}
+
+ion-card {
+  max-width: 60%;
+  margin: 16px auto;
+  box-shadow: 2px 2px 8px gray;
+}
+
+.cart-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-button{
+    width: 80px;
+}
+
+span {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+

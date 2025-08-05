@@ -3,13 +3,16 @@
     <ion-grid>
       <ion-row>
         <ion-col class="col1">
-          <img
-            id="app-logo"
-            src="../../assets/images/appLogo.png"
-            alt="brand-logo"
-            aria-label="app-logo"
+          <a [routerLink]="['/home']">
+            <img
+              id="app-logo"
+              src="../../assets/images/appLogo.png"
+              alt="brand-logo"
+              aria-label="app-logo"
+            />
+          </a>
           />
-        </ion-col> 
+        </ion-col>
         <ion-col class="col2">
           <ion-grid class="second-grid">
             <ion-row>
@@ -28,15 +31,22 @@
                 </ion-button>
               </ion-col>
               <ion-col size="auto" class="cart-logo">
-                <div class="icon-container">
-                  <ion-icon
-                    name="cart-outline"
-                    size="large"
-                    color="secondary"
-                    aria-label="Shopping Cart"
-                  ></ion-icon>
-                  <ion-badge color="danger" class="badge-on-icon">4</ion-badge>
-                </div>
+                <a
+                  [routerLink]="['/shopping-cart']"
+                  style="text-decoration: none"
+                >
+                  <div class="icon-container">
+                    <ion-icon
+                      name="cart-outline"
+                      size="large"
+                      color="secondary"
+                      aria-label="Shopping Cart"
+                    ></ion-icon>
+                    <ion-badge color="danger" class="badge-on-icon"
+                      >4</ion-badge
+                    >
+                  </div>
+                </a>
               </ion-col>
             </ion-row>
             <ion-row class="product-navbar">
