@@ -15,7 +15,19 @@ import {
   IonIcon,
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
+import { addIcons } from 'ionicons';
+import { removeOutline, addOutline, trash } from 'ionicons/icons';
+import { HttpClient } from '@angular/common/http';
 
+interface Cart {
+  _id: string;
+  productName: string;
+  photo: string;
+  quantity: number;
+  productId: string;
+  price: number;
+  itemId: string;
+}
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.page.html',
@@ -26,6 +38,7 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
     IonLabel,
     IonItem,
     IonCardContent,
+    IonIcon,
     IonContent,
     IonTitle,
     CommonModule,
@@ -36,27 +49,77 @@ import { NavbarComponent } from 'src/app/navbar/navbar.component';
   ],
 })
 export class ShoppingCartPage implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-
+  cartItems: Cart[] = [];
+  apiURL = 'http://localhost:5000/';
   productId = 1;
+
+  constructor(private http: HttpClient) {
+    addIcons({ removeOutline, addOutline, trash });
+  }
+
+  ngOnInit() {
+    this.showCart();
+  }
+
+  showCart() {
+    this.http.get<Cart[]>(this.apiURL + 'show-cart').subscribe((data) => {
+      this.cartItems = data;
+    });
+  }
   quantity = 1;
 
-  increment() {
+  increment(item: Cart) {
     // increasing quantity
-    this.quantity += 1;
+    item.quantity += 1;
+    this.http
+      .get(
+        this.apiURL +
+          'update-product-quantity/?itemId=' +
+          item.itemId +
+          '&quantity=' +
+          item.quantity
+      )
+      .subscribe((data) => {
+        console.log('Success')
+        this.showCart();
+      });
   }
-  decrement() {
+  decrement(item: Cart) {
     // decreasing quantity
-    if (this.quantity <= 1) {
-      this.quantity = 1;
+    if (item.quantity <= 1) {
+      item.quantity = 1;
+      this.http
+        .get(
+          this.apiURL +
+            'update-product-quantity/?itemId=' +
+            item.itemId +
+            '&quantity=' +
+            item.quantity
+        )
+        .subscribe((data) => {
+          console.log('Success')
+          this.showCart();
+        });
     } else {
-      this.quantity -= 1;
+      item.quantity -= 1;
+      this.http
+        .get(
+          this.apiURL +
+            'update-product-quantity/?itemId=' +
+            item.itemId +
+            '&quantity=' +
+            item.quantity
+        )
+        .subscribe((data) => {
+          console.log('Success')
+          this.showCart();
+        });
     }
   }
 
-  delete() {
-    this.quantity = 0;
+  deleteItem(itemId: string) {
+    this.http.get(this.apiURL + 'delete-product/?itemId=' + itemId).subscribe((data) => {
+      this.showCart()
+    });
   }
 }

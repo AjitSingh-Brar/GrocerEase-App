@@ -3,52 +3,92 @@
 
   <div class="content">
     <ion-title> Shopping Cart </ion-title>
+    <div class="cart-section">
+      <div class="items-section">
+        <ion-card *ngFor="let item of cartItems">
+          <ion-card-content class="cart-product">
+            <ion-item lines="none">
+              <img
+                [src]="'assets/images/product/' + item?.photo"
+                alt="Tomatoes"
+                class="cart-product-img"
+                style="width: 150px; object-fit: cover; margin-right: 16px"
+              />
 
-    <div>
-      <ion-card>
-        <ion-card-content class="cart-product">
-          <ion-item lines="none">
-            <img
-              src="assets/images/product/tomatoes.jpg"
-              alt="Tomatoes"
-              class="cart-product-img"
-              style="width: 150px; object-fit: cover; margin-right: 16px"
-            />
+              <ion-label>
+                <h2>
+                  <a
+                    [routerLink]="['/product', productId]"
+                    style="text-decoration: none; color: inherit"
+                  >
+                    {{item?.productName}}
+                  </a>
+                </h2>
+                <p>${{item.price | number:'1.2-2'}} each</p>
+              </ion-label>
 
-            <ion-label>
-              <h2>
-                <a
-                  [routerLink]="['/product', productId]"
-                  style="text-decoration: none; color: inherit"
-                >
-                  Tomatoes
-                </a>
-              </h2>
-              <p>$25 each</p>
-            </ion-label>
+              <div class="cart-actions">
+                <!-- <ion-button color="warning" (click)="decrement()">
+              Remove
+            </ion-button>
 
-            <div class="cart-actions">
-              <ion-button color="warning" (click)="decrement()">
-                Remove
-              </ion-button>
+            <span>{{ quantity }}</span>
 
-              <span>{{ quantity }}</span>
-
-              <ion-button color="success" (click)="increment()">
-                Add
-              </ion-button>
-
-              <ion-button
-                color="danger"
-                style="margin-left: 50px"
-                (click)="delete()"
-              >
-                Delete
-              </ion-button>
-            </div>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
+            <ion-button color="success" (click)="increment()">
+              Add
+            </ion-button> -->
+                <div class="quantity">
+                  <ion-button
+                    class="minus"
+                    size="small"
+                    (click)="(decrement(item))"
+                  >
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-button>
+                  <input
+                    type="text"
+                    [(ngModel)]="item.quantity"
+                    readonly
+                    id="qtyInput"
+                  />
+                  <ion-button
+                    class="plus"
+                    size="small"
+                    (click)="increment(item)"
+                  >
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+                <!-- <ion-button
+              color="danger"
+              style="margin-left: 50px"
+              (click)="delete()"
+            >
+              Delete
+            </ion-button> -->
+                <div>
+                  <ion-button
+                    color="danger"
+                    shape="round"
+                    fill="clear"
+                    size="default"
+                    (click)="deleteItem(item.itemId)"
+                  >
+                    <ion-icon name="trash"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div>
+        <ion-card>
+          <ion-card-content>
+            hello
+          </ion-card-content>
+        </ion-card>
+      </div>
     </div>
   </div>
 </ion-content>
