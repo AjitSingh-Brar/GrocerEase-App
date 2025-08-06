@@ -1,17 +1,17 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-subtitle>-A.K</ion-card-subtitle>
+    <ion-card-subtitle>-{{itemData?.customer}}</ion-card-subtitle>
   </ion-card-header>
 
   <div class="card-content">
     <ion-card-content>
-      Good croissants, crispy, nice taste and greshly baked
+      {{itemData?.feedback}}
     </ion-card-content>
     <div>
-        <ion-button id="open-modal" color="secondary" shape="round">
+        <ion-button color="secondary" shape="round" (click)="onEdit()">
           <ion-icon name="pencil"></ion-icon>
       </ion-button>
-      <ion-button color="danger" shape="round">
+      <ion-button color="danger" shape="round" (click)="onDelete()">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </div>

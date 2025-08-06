@@ -16,6 +16,7 @@ import {
   IonModal,
   IonHeader,
   IonToolbar,
+  IonInput,
 } from '@ionic/angular/standalone';
 import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { addIcons } from 'ionicons';
@@ -35,12 +36,21 @@ interface Product {
   photo: string;
 }
 
+interface ProductReview {
+  _id: string;
+  customer: string;
+  feedback: string;
+  productId: string;
+  reviewId: string;
+}
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.page.html',
   styleUrls: ['./product.page.scss'],
   standalone: true,
   imports: [
+    IonInput,
     IonToolbar,
     IonHeader,
     IonModal,
@@ -65,6 +75,8 @@ export class ProductPage implements OnInit {
   quantity = 1;
   price = 5.0;
   product: Product | undefined;
+  productReview: ProductReview[] = [];
+  productReviewId: string | undefined;
   apiURL = 'http://localhost:5000/';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
@@ -80,6 +92,22 @@ export class ProductPage implements OnInit {
           .get<Product>(this.apiURL + `show-product/${id}`)
           .subscribe((data) => {
             this.product = data;
+          });
+      }
+    });
+    this.showProducReview();
+  }
+
+  showProducReview() {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('productId');
+      console.log('ID', id);
+      if (id) {
+        this.http
+          .get<ProductReview[]>(this.apiURL + `show-product-reviews/${id}`)
+          .subscribe((data) => {
+            this.productReview = data;
+            console.log(data);
           });
       }
     });
@@ -99,7 +127,13 @@ export class ProductPage implements OnInit {
   }
 
   addToCart() {
-    if (!this.product?.productId || !this.product?.productName || !this.quantity || !this.product?.photo || !this.product?.price) {
+    if (
+      !this.product?.productId ||
+      !this.product?.productName ||
+      !this.quantity ||
+      !this.product?.photo ||
+      !this.product?.price
+    ) {
       console.error('Product details are missing');
       return;
     }
@@ -111,8 +145,43 @@ export class ProductPage implements OnInit {
     formData.append('photo', this.product?.photo);
     formData.append('price', String(this.product?.price));
 
-    this.http.post(this.apiURL + 'add-to-cart', formData).subscribe((data) => {
-    });
+    this.http
+      .post(this.apiURL + 'add-to-cart', formData)
+      .subscribe((data) => {});
+  }
+
+  addReview() {
+    if (!this.product?.productId) {
+      console.error('Review details are missing');
+      return;
+    }
+
+    let name = (<HTMLInputElement>document.getElementById('name')).value;
+    let review = (<HTMLInputElement>document.getElementById('review')).value;
+
+    let reviewData = new FormData();
+    reviewData.append('productId', this.product.productId);
+    reviewData.append('customer', name);
+    reviewData.append('feedback', review);
+
+    console.log('Data', reviewData);
+
+    this.http
+      .post(this.apiURL + 'add-product-review', reviewData)
+      .subscribe((data) => {});
+  }
+
+  handleEditReview(reviewId: string) {
+    this.productReviewId = reviewId;
+    this.reviewModal.present();
+  }
+
+  handleDeleteReview(reviewId: string) {
+    this.http
+      .get(this.apiURL + 'delete-product-review/?reviewId=' + reviewId)
+      .subscribe(() => {
+        this.showProducReview(); // refresh reviews
+      });
   }
 
   items: string[] = [];
@@ -144,6 +213,8 @@ export class ProductPage implements OnInit {
   }
 
   submit() {
+    this.addReview();
+    this.showProducReview();
     this.modal.dismiss(this.name, 'confirm');
   }
 
@@ -162,6 +233,21 @@ export class ProductPage implements OnInit {
     this.reviewModal.dismiss(null, 'cancel');
   }
   confirm() {
+    let feedback = (<HTMLInputElement>document.getElementById('updatedReview'))
+      .value;
+
+    this.http
+      .get(
+        this.apiURL +
+          'update-product-review/?reviewId=' +
+          this.productReviewId +
+          '&feedback=' +
+          feedback
+      )
+      .subscribe((data) => {
+        console.log('Success');
+        this.showProducReview();
+      });
     this.reviewModal.dismiss(this.updatedName, 'confirm');
   }
   onWillDismiss(event: CustomEvent<OverlayEventDetail>) {

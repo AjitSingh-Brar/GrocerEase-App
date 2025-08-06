@@ -12,9 +12,7 @@
       <ion-col class="product-description" size="12" size-md="6">
         <div class="product-section">
           <ion-title class="product-name">{{product?.productName}}</ion-title>
-          <div class="product-details">
-            {{product?.productDesc}}
-          </div>
+          <div class="product-details">{{product?.productDesc}}</div>
           <div class="product-price">$ {{product?.price | number:'1.2-2'}}</div>
           <div class="quantity">
             <ion-button class="minus" size="small" (click)="(decrement())">
@@ -26,7 +24,9 @@
             </ion-button>
           </div>
           <div class="addToCart">
-            <ion-button size="default" color="secondary" (click)="addToCart()">Add to Cart</ion-button>
+            <ion-button size="default" color="secondary" (click)="addToCart()"
+              >Add to Cart</ion-button
+            >
           </div>
         </div>
       </ion-col>
@@ -37,13 +37,19 @@
     <div class="review-header">
       <div class="review-title">Product Reviews</div>
       <div>
-        <ion-button id="open-addReview-modal" color="secondary">Add Review</ion-button>
+        <ion-button id="open-addReview-modal" color="secondary"
+          >Add Review</ion-button
+        >
       </div>
     </div>
     <div class="ion-content-scroll-host">
       <ion-list>
-        <ion-item *ngFor="let item of items">
-          <app-product-review></app-product-review>
+        <ion-item *ngFor="let item of productReview">
+          <app-product-review
+            [itemData]="item"
+            (editReview)="handleEditReview($event)"
+            (deleteReview)="handleDeleteReview($event)"
+          ></app-product-review>
         </ion-item>
       </ion-list>
 
@@ -78,7 +84,7 @@
             labelPlacement="stacked"
             type="text"
             placeholder="Name"
-            [(ngModel)]="name"
+            id="name"
           ></ion-input>
         </ion-item>
         <ion-item>
@@ -87,7 +93,7 @@
             labelPlacement="stacked"
             type="text"
             placeholder="Your review"
-            [(ngModel)]="review"
+            id="review"
           ></ion-input>
         </ion-item>
         <div class="modal-buttons">
@@ -101,7 +107,6 @@
   </ion-modal>
 
   <ion-modal
-    trigger="open-modal"
     #reviewModal
     cssClass="custom-modal"
     (willDismiss)="onWillDismiss($event)"
@@ -119,7 +124,7 @@
             labelPlacement="stacked"
             type="text"
             placeholder="Your review"
-            [(ngModel)]="updatedReview"
+            id="updatedReview"
           ></ion-input>
         </ion-item>
         <div class="modal-buttons">
